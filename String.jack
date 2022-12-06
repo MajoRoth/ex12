@@ -12,33 +12,47 @@
  * string-oriented operations.
  */
 class String {
+    field Array str;
+    field int length
     /** constructs a new empty string with a maximum length of maxLength
      *  and initial length of 0. */
     constructor String new(int maxLength) {
+        let str = Array.new(maxLength);
+        let length = 0;
+        return this;
     }
-
+;
     /** Disposes this string. */
     method void dispose() {
+        do Array.dispose();
+        let str = -1;
+        let length = -1;
     }
 
     /** Returns the current length of this string. */
     method int length() {
+        return length;
     }
 
     /** Returns the character at the j-th location of this string. */
     method char charAt(int j) {
+        return Memory.peek(str + j); // need to be tested
     }
 
     /** Sets the character at the j-th location of this string to c. */
     method void setCharAt(int j, char c) {
+        Memory.poke(str + j, c); // need to be tested
     }
 
     /** Appends c to this string's end and returns this string. */
     method String appendChar(char c) {
+        Memory.poke(str + length, c); // need to be tested
+        let length = length + 1;
     }
 
     /** Erases the last character from this string. */
     method void eraseLastChar() {
+        let length = length - 1;
     }
 
     /** Returns the integer value of this string, 
@@ -50,6 +64,17 @@ class String {
         // 3.   let d = integer value of str.charAt(i)
         // 4.   let val = (val*10) + d
         // 5. return val
+
+
+        // NOT FINISHED!!!
+        var int val, counter, d;
+        let val = 0;
+        let counter = 0;
+        while (counter < i){
+            let d = str.charAt(i) - 48;
+            let val = val * 10 + d
+        }
+        return val;
     }
 
     /** Sets this string to hold a representation of the given value. */
@@ -61,7 +86,19 @@ class String {
         // 4.   return c (as a string)
         // 5. else
         // 6.   return int2String(val / 10).appendChar(c)
+        var int lastDigit, c length;
+        var String s;
+        let lastDigit = val % 10
+        let c = lastDigit + 48;
+        if (val < 10){
+            String.
+            return s;
+        }
+        else{
+
+        }
     }
+
 
     /** Returns the new line character. */
     function char newLine() {

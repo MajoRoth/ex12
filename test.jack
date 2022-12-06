@@ -1,4 +1,5 @@
-function void wait(int duration) {
+class Test{
+    function void wait(int duration) {
         let i = duration;
         while (i > 0){
             let i = i-1;
@@ -7,3 +8,5 @@ function void wait(int duration) {
 
 
 do wait(10000000);
+}
+

@@ -4,7 +4,7 @@ class Test{
         let i = duration;
         while (i > 0){
             let i = i-1;
-        }s
+        }
     }
 
 

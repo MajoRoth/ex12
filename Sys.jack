@@ -40,12 +40,14 @@ class Sys {
     function void wait(int duration) {
         let i = duration;
         while (i > 0){
-            let i = i-1
+            let i = i-1;
         }
     }
 
     /** Displays the given error code in the form "ERR<errorCode>",
      *  and halts the program's execution. */
     function void error(int errorCode) {
+        do Output.printString("ERR" + errorCode);
+        do Sys.halt();
     }
 }

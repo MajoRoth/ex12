@@ -1,0 +1,9 @@
+function void wait(int duration) {
+        let i = duration;
+        while (i > 0){
+            let i = i-1;
+        }
+    }
+
+
+do wait(1000);

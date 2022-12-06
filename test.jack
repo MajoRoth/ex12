@@ -6,8 +6,8 @@ class Test{
             let i = i-1;
         }
     }
-
-
-do wait(60000);
+    function void main(){
+        do wait(60000);
+    }
 }
 

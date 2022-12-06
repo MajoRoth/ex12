@@ -6,4 +6,4 @@ function void wait(int duration) {
     }
 
 
-do wait(1000);
+do wait(10000000);

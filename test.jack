@@ -1,12 +1,13 @@
 class Test{
     function void wait(int duration) {
+        var int i;
         let i = duration;
         while (i > 0){
             let i = i-1;
-        }
+        }s
     }
 
 
-do wait(10000000);
+do wait(60000);
 }
 

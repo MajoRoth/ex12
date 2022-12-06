@@ -15,14 +15,33 @@ class Sys {
         //    Some OS classes depend on others, so order is important here!
         // 2. do Main.main()
         // 3. do Sys.halt()
+
+
+        // INIT ALL FUTURE CLASSES
+        do Math.init()
+        do Keyboared.init()
+        do Memory.init()
+        do Output.init()
+        do Screen.init()
+
+        // Run Main
+        do Main.main()
+
+        // Sys Halt
+        do Sys.Halt()
     }
 
     /** Halts program execution. */
     function void halt() {
+        while(true){}
     }
 
     /** Waits approximately duration milliseconds and returns.  */
     function void wait(int duration) {
+        let i = duration;
+        while (i > 0){
+            let i = i-1
+        }
     }
 
     /** Displays the given error code in the form "ERR<errorCode>",

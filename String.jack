@@ -104,8 +104,29 @@ class String {
         return value * factor;
     }
 
+   
     /** Sets this string to hold a representation of the given value. */
     method void setInt(int val) {
+        // Pseudocode:
+        // 1. let lastDigit = val % 10
+        // 2. let c = character representing lastDigit
+        // 3. if (val < 10)
+        // 4.   return c (as a string)
+        // 5. else
+        // 6.   return int2String(val / 10).appendChar(c)
+        let length = 0;
+
+        if (val < 0){
+            let val = -val;
+            do appendChar(45);
+        }
+        do recursiveSetInt(val);
+
+        return;
+        
+    }
+
+    method void recursiveSetInt(int val) {
         // Pseudocode:
         // 1. let lastDigit = val % 10
         // 2. let c = character representing lastDigit
@@ -116,19 +137,20 @@ class String {
 
         var int lastDigit, c;
 
-        let lastDigit = val; // MOD!!!
+        let lastDigit = val - ((val / 10)*10);
         let c = lastDigit + 48;
 
         if (val < 10){
-            let length = 0;
             do appendChar(c);
         }
         else {
-            do setInt(val / 10);
+            do recursiveSetInt(val / 10);
             do appendChar(c);
         }
         return;
     }
+
+
 
     /** Returns the new line character. */
     function char newLine() {
@@ -151,5 +173,9 @@ class String {
             return 1;
         }
         return 0;
+    }
+
+    function char digit_to_char(int d) {
+        return d + 48;
     }
 }

@@ -9,12 +9,35 @@
  * Note: Jack compilers implement multiplication and division using OS method calls.
  */
 class Math {
+        static int two_power;
         /** Initializes the library. */
         function void init() {
+            let two_power = Array.new(16);
+            let two_power[0] = 1;
+            let two_power[1] = 2;
+            let two_power[2] = 4;
+            let two_power[3] = 8;
+            let two_power[4] = 16;
+            let two_power[5] = 32;
+            let two_power[6] = 64;
+            let two_power[7] = 128;
+            let two_power[8] = 256;
+            let two_power[9] = 512;
+            let two_power[10] = 1024;
+            let two_power[11] = 2048;
+            let two_power[12] = 4096;
+            let two_power[13] = 8192;
+            let two_power[14] = 16384;
+            let two_power[15] = 32768;
+
         }
 
         /** Returns the absolute value of x. */
         function int abs(int x) {
+            if (x < 0){
+                return -x;
+            }
+            return x;
         }
 
         /** 
@@ -32,6 +55,18 @@ class Math {
             // 5.      let sum = sum + shiftedx
             // 6.   let shiftedx = 2*shiftedx
             // 7. return sum
+
+            var int sum, shiftedx, counter;
+            let sum = 0;
+            let shiftedx = x;
+
+            while (counter < 16){
+                if (Math.iBit(y, counter)){
+                    let sum = sum + shiftedx;
+                }
+                let shiftedx = 2*shiftedx;
+            }
+            return sum;
         }
 
         /** 
@@ -69,5 +104,9 @@ class Math {
 
         /** Returns the smaller number. */
         function int min(int a, int b) {
+        }
+
+        function int iBit(int x, int k) {
+            return (x & two_power[k] = 1);
         }
 }

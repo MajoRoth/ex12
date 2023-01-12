@@ -190,8 +190,8 @@ class Output {
     /** Moves the cursor to the j-th column of the i-th row,
      *  and erases the character displayed there. */
     function void moveCursor(int i, int j) {
-        let cur_x = i;
-        let cur_y = j;
+        let cur_x = j;
+        let cur_y = i;
         return;
     }
 
@@ -200,19 +200,27 @@ class Output {
     function void printChar(char c) {
         // Your implementation should be as efficient as possible.
         // For example, you can draw multiple pixels at once, for each row.
-        var int address;
-        let address = cur_y * 11 * 32 + cur_x / 2
-
+        var Array char_map;
+        var int address, j, row;
+        let address = (cur_y * (32 * 11)) + (cur_x / 2);
         // start drawing the char in the current address
         let char_map = Output.getMap(c);
-
         let j =0;
         while (j < 11){
             let row = char_map[j];
-            let screen[address] = screen[address] & row;
-            address = address + 32;
-            j = j + 1
+            let screen[address] = screen[address] | row;
+            let address = address + 32;
+            let j = j + 1;
         }
+
+        if (cur_x = 63){
+            do Output.println();
+        }
+        else{
+            let cur_x = cur_x + 1;
+        }
+
+        return;
 
 
     }
@@ -220,21 +228,45 @@ class Output {
     /** displays the given string starting at the cursor location,
      *  and advances the cursor appropriately. */
     function void printString(String s) {
+        var int length, j;
+        var char c;
+        let length = s.length();
+        let j = 0;
+
+
+        while(j < length){
+            let c = s.charAt(j);
+            do Output.printChar(c);
+            let j = j +1;
+        }
+        return;
     }
 
     /** Displays the given integer starting at the cursor location,
      *  and advances the cursor appropriately. */
     function void printInt(int i) {
+        var string s;
+        let s = String.new(30);
+        do s.setInt(i);
+        do Output.printString(s);
+        return;
     }
 
     /** Advances the cursor to the beginning of the next line. */
     function void println() {
         let cur_x = 0;
-        let cur_y = cur_y + 1;
+        if (cur_y < 22){
+            let cur_y = cur_y + 1;
+        }
+        else{
+            let cur_y = 0;
+        }
+        return;
     }
 
     /** Moves the cursor one column back. */
     function void backSpace() {
         let cur_x = cur_x - 1;
+        return;
     }
 }

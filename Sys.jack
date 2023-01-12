@@ -18,36 +18,45 @@ class Sys {
 
 
         // INIT ALL FUTURE CLASSES
-        do Math.init()
-        do Keyboared.init()
-        do Memory.init()
-        do Output.init()
-        do Screen.init()
+        do Memory.init();
+        do Math.init();
+        do Keyboard.init();
+        do Output.init();
+        do Screen.init();
 
         // Run Main
-        do Main.main()
+        do Main.main();
 
         // Sys Halt
-        do Sys.Halt()
+        do Sys.halt();
+        return;
     }
 
     /** Halts program execution. */
     function void halt() {
         while(true){}
+        return;
     }
 
     /** Waits approximately duration milliseconds and returns.  */
     function void wait(int duration) {
+        var int i, k;
         let i = duration;
         while (i > 0){
+            let k = 130;
+            while(k>0){
+                let k = k - 1;
+            }
             let i = i-1;
         }
+        return;
     }
 
     /** Displays the given error code in the form "ERR<errorCode>",
      *  and halts the program's execution. */
     function void error(int errorCode) {
-        do Output.printString("ERR" + errorCode);
+        //do Output.printString("ERR" + errorCode);
         do Sys.halt();
+        return;
     }
 }

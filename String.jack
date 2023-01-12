@@ -12,33 +12,52 @@
  * string-oriented operations.
  */
 class String {
+    
+    field Array string;
+    field int length, maxLength;
+
     /** constructs a new empty string with a maximum length of maxLength
      *  and initial length of 0. */
-    constructor String new(int maxLength) {
+    constructor String new(int AmaxLength) {
+        let maxLength = AmaxLength;
+        let length = 0;
+        let string = Array.new(maxLength);
+        return this;
     }
 
     /** Disposes this string. */
     method void dispose() {
+        do string.dispose();
+        return;
     }
 
     /** Returns the current length of this string. */
     method int length() {
+        return length;
     }
 
     /** Returns the character at the j-th location of this string. */
     method char charAt(int j) {
+        return string[j];
     }
 
     /** Sets the character at the j-th location of this string to c. */
     method void setCharAt(int j, char c) {
+        string[j] = c;
+        return;
     }
 
     /** Appends c to this string's end and returns this string. */
     method String appendChar(char c) {
+        string[length] = c;
+        length = length + 1;
+        return;
     }
 
     /** Erases the last character from this string. */
     method void eraseLastChar() {
+        this.length = this.length - 1;
+        return;
     }
 
     /** Returns the integer value of this string, 
@@ -50,6 +69,7 @@ class String {
         // 3.   let d = integer value of str.charAt(i)
         // 4.   let val = (val*10) + d
         // 5. return val
+        return;
     }
 
     /** Sets this string to hold a representation of the given value. */
@@ -61,17 +81,21 @@ class String {
         // 4.   return c (as a string)
         // 5. else
         // 6.   return int2String(val / 10).appendChar(c)
+        return;
     }
 
     /** Returns the new line character. */
     function char newLine() {
+        return;
     }
 
     /** Returns the backspace character. */
     function char backSpace() {
+        return;
     }
 
     /** Returns the double quote (") character. */
     function char doubleQuote() {
+        return;
     }
 }

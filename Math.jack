@@ -28,8 +28,8 @@ class Math {
             let two_power[12] = 4096;
             let two_power[13] = 8192;
             let two_power[14] = 16384;
-            let two_power[15] = 32768;
-
+            let two_power[15] = 16384  + 16384;
+            return;
         }
 
         /** Returns the absolute value of x. */
@@ -57,14 +57,17 @@ class Math {
             // 7. return sum
 
             var int sum, shiftedx, counter;
+
             let sum = 0;
             let shiftedx = x;
+            let counter = 0;
 
             while (counter < 16){
                 if (Math.iBit(y, counter)){
                     let sum = sum + shiftedx;
                 }
-                let shiftedx = 2*shiftedx;
+                let shiftedx = shiftedx + shiftedx;
+                let counter = counter + 1;
             }
             return sum;
         }
@@ -86,6 +89,26 @@ class Math {
             // 4.   return 2*q
             // 5. else
             // 6.   return 2*q + 1
+            var int res, sign, absX, absY, q;
+            
+            let sign = (x < 0) = (y < 0);
+            let absX = Math.abs(x);
+            let absY = Math.abs(y);
+
+            if (absY > absX){
+                return 0;
+            }
+            let q = Math.divide(absX, absY + absY);
+
+            if (absX - (2*q*absY) < absY){
+                let res = q + q;
+            }
+            let res = q + q + 1;
+
+            if (sign){
+                return res;
+            }
+            return -res;
         }
 
         /** Returns the integer part of the square root of x. */
@@ -96,14 +119,35 @@ class Math {
             // 2. for j = (n/2 - 1) ... 0 do
             // 3.   if ((y + 2**j)**2 <= x) then let y = y + 2**j
             // 4. return y
+            var int y, j, q, counter;
+            let counter = 7;
+            let y = 0;
+
+
+            while (counter > -1){
+                let q = y + two_power[counter];
+                if (~(q * q - 1 > x)){
+                    let y = q;
+                }
+                let counter = counter - 1;
+            }
+            return y;
         }
 
         /** Returns the greater number. */
         function int max(int a, int b) {
+            if (a > b){
+                return a;
+            }
+            return b;
         }
 
         /** Returns the smaller number. */
         function int min(int a, int b) {
+            if (a > b){
+                return b;
+            }
+            return a;
         }
 
         function int iBit(int x, int k) {

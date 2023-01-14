@@ -85,7 +85,7 @@ class Output {
         do Output.create(64,30,51,51,59,59,59,27,3,30,0,0);  // @
         do Output.create(63,30,51,51,24,12,12,0,12,12,0,0);  // ?
 
-        do Output.create(65,0,0,0,0,0,0,0,0,0,0,0);          // A ** TO BE FILLED **
+        do Output.create(65,12,30,18,51,33,63,51,33,33,0,0);          // A ** TO BE FILLED **
         do Output.create(66,31,51,51,51,31,51,51,51,31,0,0); // B
         do Output.create(67,28,54,35,3,3,3,35,54,28,0,0);    // C
         do Output.create(68,15,27,51,51,51,51,51,27,15,0,0); // D
@@ -201,14 +201,22 @@ class Output {
         // Your implementation should be as efficient as possible.
         // For example, you can draw multiple pixels at once, for each row.
         var Array char_map;
-        var int address, j, row;
+        var int address, j, row, shift, val;
         let address = (cur_y * (32 * 11)) + (cur_x / 2);
+        let shift = cur_x & 1;
         // start drawing the char in the current address
         let char_map = Output.getMap(c);
         let j =0;
         while (j < 11){
             let row = char_map[j];
-            let screen[address] = screen[address] | row;
+            if (shift = 1){
+                let row = 256 * row;
+                let val = -1 & 255;
+            }
+            else{
+                let val = 255;
+            }
+            let screen[address] = screen[address] & val | row;
             let address = address + 32;
             let j = j + 1;
         }

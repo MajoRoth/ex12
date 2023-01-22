@@ -10,6 +10,8 @@
  */
 class Math {
         static int two_power;
+        static int division_constant;
+
         /** Initializes the library. */
         function void init() {
             let two_power = Array.new(16);
@@ -96,14 +98,17 @@ class Math {
             let absY = Math.abs(y);
 
             if (absY > absX){
+                let division_constant = 0;
                 return 0;
             }
             let q = Math.divide(absX, absY + absY);
 
-            if (absX - (2*q*absY) < absY){
+            if (absX - division_constant < absY){
                 let res = q + q;
+            }else{
+                let division_constant = division_constant + y;
+                let res = q + q + 1;
             }
-            let res = q + q + 1;
 
             if (sign){
                 return res;
@@ -119,15 +124,22 @@ class Math {
             // 2. for j = (n/2 - 1) ... 0 do
             // 3.   if ((y + 2**j)**2 <= x) then let y = y + 2**j
             // 4. return y
-            var int y, j, q, counter;
+            var int y, j, q, counter, a, b;
             let counter = 7;
             let y = 0;
-
+            let a = 0;
+            let b = 0;
 
             while (counter > -1){
-                let q = y + two_power[counter];
-                if (~(q * q - 1 > x)){
-                    let y = q;
+                let q = a + b + two_power[counter + counter];
+
+                if (~(q > x) & (q > 0)){
+                    let y = y + two_power[counter];
+                    let a = q;
+                    let b = (#b) + two_power[counter + counter];
+                }
+                else{
+                    let b = (#b);
                 }
                 let counter = counter - 1;
             }
@@ -151,6 +163,6 @@ class Math {
         }
 
         function int iBit(int x, int k) {
-            return (x & two_power[k] = 1);
+            return ~((x & two_power[k]) = 0);
         }
 }

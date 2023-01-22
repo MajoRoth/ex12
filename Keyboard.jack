@@ -7,7 +7,7 @@
 /**
  * A library for handling user input from the keyboard.
  */
-class Keyboard { //TODO: ADD CURSOR
+class Keyboard { 
         /** Initializes the keyboard. */
         static int kbd;
 
@@ -59,10 +59,11 @@ class Keyboard { //TODO: ADD CURSOR
             // 6. advance the cursor
             // 7. return c
             var char c;
-            //Output.printString("_");
+            do Output.printChar(0);
             while(Keyboard.keyPressed() = 0){}
-            let c = Keyboard.keyPressed(); //might change - might be a problem
+            let c = Keyboard.keyPressed();
             while(~(Keyboard.keyPressed() = 0)){}
+            do Output.backSpace();
             do Output.printChar(c);
             return c;
         }
@@ -97,7 +98,6 @@ class Keyboard { //TODO: ADD CURSOR
             while(true){
                 let c = Keyboard.readChar();
                 if(c = String.newLine()){
-                    //display newline
                     return str;
                 }
                 else{ 

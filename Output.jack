@@ -253,7 +253,7 @@ class Output {
     /** Displays the given integer starting at the cursor location,
      *  and advances the cursor appropriately. */
     function void printInt(int i) {
-        var string s;
+        var String s;
         let s = String.new(30);
         do s.setInt(i);
         do Output.printString(s);

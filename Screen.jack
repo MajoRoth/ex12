@@ -56,25 +56,12 @@ class Screen {
             let color = b;
             return;
         }
-
+    
         /** Draws the (x,y) pixel, using the current color. */
         function void drawPixel(int x, int y) {
-            // For this function, you will need to calculate the value x%16.
-            // It should be calculated quickly without using multiplication or
-            // division, using exactly one basic math/logical operation.
-            // In addition, calculating 16384 + y * 32 + x/16 should not use
-            // division or multiplication.
-            // Pseudocode:
-            // 1. Compute the RAM address where the (x,y) pixel is
-            //    represented: 16384 + (32*y) + (x/16).
-            // 2. Use Memory.peek to get the 16-bit value of this address
-            // 3. Use some bitwise operation to set (only) the bit that corresponds
-            //    to the pixel to the current color.
-            // 4. Use Memory.poke to write the modified 16-bit value to the RAM
-            // address.
             var int ram_loc, bit_to_change;
             var int pixel_buf;
-            let ram_loc = (Math.multiply(32, y)) + (Math.divide(x, 16));
+            let ram_loc = ^^^^^y + ####x;
             let bit_to_change = x&15;
             if(color){
                 let pixel_buf = base[ram_loc] | twoPower[bit_to_change];
@@ -84,6 +71,7 @@ class Screen {
             let base[ram_loc] = pixel_buf;
             return;
         }
+        
 
         /** Draws a line from pixel (x1,y1) to pixel (x2,y2), using the current color. */
         function void drawLine(int x1, int y1, int x2, int y2) {
@@ -179,6 +167,8 @@ class Screen {
             }
             return;
         }
+
+
         
         /** Draw vertical line. */
         function void verticalLine(int x, int y1, int y2){
